@@ -131,6 +131,25 @@ resource "aws_vpc" "cross_az_test" {
   }
 }
 
+resource "aws_flow_log" "example" {
+  log_destination      = aws_s3_bucket.crossaztestflowlog.arn
+  log_destination_type = "s3"
+  traffic_type         = "ALL"
+  vpc_id               = aws_vpc.cross_az_test.id
+  destination_options {
+    file_format        = "plain-text"
+    per_hour_partition = true
+  }
+}
+
+resource "aws_s3_bucket" "crossaztestflowlog" {
+  bucket = "cross-az-test-flow-log"
+  tags = {
+    Name = "tidb-tikv-cross-az-zlib"
+    usedby = var.usedby_tags
+  }
+}
+
 resource "aws_subnet" "subnet_0" {
   vpc_id            = aws_vpc.cross_az_test.id
   cidr_block        = "10.0.1.0/24"

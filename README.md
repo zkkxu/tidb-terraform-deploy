@@ -11,7 +11,7 @@
 ![avatar](output.png)
 
 1. bastion_public_ip: tiup 控制面的公网 ip  
-2. grafana_public_ip: tidb 集群 grafana 监控的公网 ip, 登录grafana: http://grafana_public_ip:3000
+2. grafana_public_ip: tidb 集群 grafana 监控的公网 ip, 登录 grafana: http://grafana_public_ip:3000
 3. ssh_bastion_server: 如何登录 bastion 
 4. ssh_test_server: 如何登录测试机器
 5. tidb_public_url: tidb 公网的负载均衡器
