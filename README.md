@@ -20,5 +20,6 @@
 上一步，terraform 会创建虚拟机出
 1. copy tiup/topolgy.yaml 到 bastion vm
 2. 部署 tiup: ```curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh```
-3. 
+3. tiup cluster deploy tidb-test v5.4.0 ./topology.yaml --user root 
+4. tiup cluster start tidb-test --init
 
