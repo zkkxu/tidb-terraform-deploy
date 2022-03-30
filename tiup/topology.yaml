@@ -1,0 +1,104 @@
+global:
+  user: "root"
+  ssh_port: 22
+  deploy_dir: "/home/centos/tidb-deploy"
+  data_dir: "/home/centos/tidb-data"
+  arch: "amd64"
+monitored:
+  node_exporter_port: 9100
+  blackbox_exporter_port: 9115
+  deploy_dir: "/home/centos/tidb-deploy/monitored-9100"
+  data_dir: "/home/centos/tidb-data/monitored-9100"
+
+#server_configs:
+#  tidb:
+#  tikv:
+#  pd:
+
+pd_servers:
+  - host: 10.0.1.24
+    ssh_port: 22
+    name: "pd-0"
+    client_port: 2379
+    peer_port: 2380
+    deploy_dir: "/home/centos/deploy/pd-2379"
+    data_dir: "/home/centos/data/"
+    # config:
+    #   schedule.max-merge-region-size: 20
+    #   schedule.max-merge-region-keys: 200000
+  - host: 10.0.2.24
+    ssh_port: 22
+    name: "pd-1"
+    client_port: 2379
+    peer_port: 2380
+    deploy_dir: "/home/centos/tidb-deploy/pd-2379"
+    data_dir: "/home/centos/data/pd-2379"
+    # config:
+    #   schedule.max-merge-region-size: 20
+    #   schedule.max-merge-region-keys: 200000
+  - host: 10.0.3.24
+    ssh_port: 22
+    name: "pd-2"
+    client_port: 2379
+    peer_port: 2380
+    deploy_dir: "/home/centos/tidb-deploy/pd-2379"
+    data_dir: "/home/centos/tidb-data/pd-2379"
+    # config:
+    #   schedule.max-merge-region-size: 20
+    #   schedule.max-merge-region-keys: 200000
+
+tidb_servers:
+  - host: 10.0.1.25
+    ssh_port: 22
+    port: 4000
+    status_port: 10080
+    deploy_dir: "/home/centos/tidb-deploy/tidb-4000"
+    log_dir: "/home/centos/tidb-deploy/tidb-4000/log"
+  - host: 10.0.2.25
+    ssh_port: 22
+    port: 4000
+    status_port: 10080
+    deploy_dir: "/home/centos/tidb-deploy/tidb-4000"
+    log_dir: "/home/centos/tidb-deploy/tidb-4000/log"
+
+tikv_servers:
+  - host: 10.0.1.23
+    ssh_port: 22
+    port: 20160
+    status_port: 20180
+    deploy_dir: "/home/centos/tidb-deploy/tikv-20160"
+    data_dir: "/home/centos/data/tikv-20160"
+    log_dir: "/home/centos/tidb-deploy/tikv-20160/log"
+    config:
+      log.level: warn
+  - host: 10.0.2.23
+    ssh_port: 22
+    port: 20160
+    status_port: 20180
+    deploy_dir: "/home/centos/tidb-deploy/tikv-20160"
+    data_dir: "/home/centos/data/tikv-20160"
+    log_dir: "/home/centos/tidb-deploy/tikv-20160/log"
+    config:
+      log.level: warn
+  - host: 10.0.3.23
+    ssh_port: 22
+    port: 20160
+    status_port: 20180
+    deploy_dir: "/home/centos/tidb-deploy/tikv-20160"
+    data_dir: "/home/centos/data/tikv-20160"
+    log_dir: "/home/centos/tidb-deploy/tikv-20160/log"
+    config:
+      log.level: warn
+
+monitoring_servers:
+  - host: 10.0.3.25
+    ssh_port: 22
+    port: 9090
+    deploy_dir: "/home/centos/tidb-deploy/prometheus-8249"
+    data_dir: "/home/centos/tidb-data/prometheus-8249"
+    log_dir: "/home/centos/tidb-deploy/prometheus-8249/log"
+
+grafana_servers:
+  - host: 10.0.2.26
+    port: 3000
+    deploy_dir: /home/centos/grafana-3000
